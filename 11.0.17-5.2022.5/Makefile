@@ -4,7 +4,7 @@ PAYARA_RELEASE=2022.5
 PAYARA_TAG=${PAYARA_VERSION}.${PAYARA_RELEASE}
 
 image:
-	docker build --build-arg ZULU_VERSION=${ZULU_VERSION} --build-arg PAYARA_TAG=${PAYARA_TAG} --build-arg PAYARA_RELEASE=${PAYARA_RELEASE} -t distroless-zulu-payara-micro:${ZULU_VERSION}-${PAYARA_TAG} .
+	docker build --no-cache --build-arg ZULU_VERSION=${ZULU_VERSION} --build-arg PAYARA_TAG=${PAYARA_TAG} --build-arg PAYARA_RELEASE=${PAYARA_RELEASE} -t distroless-zulu-payara-micro:${ZULU_VERSION}-${PAYARA_TAG} .
 	@echo ""
 	@echo "To test the image run:"
 	@echo "docker run -it --rm --cpus 2 --memory 640m distroless-zulu-payara-micro:${ZULU_VERSION}-${PAYARA_TAG}"

@@ -38,7 +38,7 @@ COPY etc_profile /etc/profile
 COPY --from=build /etc/passwd /etc/passwd
 COPY --from=build /etc/group /etc/group
 
-COPY --from=amd64/busybox:1.34.0 /bin/busybox /busybox/busybox
+COPY --from=busybox:1.34.0 /bin/busybox /busybox/busybox
 RUN ["/busybox/busybox", "--install", "/bin"]
 
 USER payara
@@ -47,6 +47,7 @@ WORKDIR $PAYARA_PATH
 COPY --from=build $PAYARA_PATH $PAYARA_PATH
 COPY --from=build $JAVA_HOME $JAVA_HOME
 COPY --from=build /usr/lib64/libz.* /lib/x86_64-linux-gnu/
+COPY --from=build /usr/lib64/libz.* /lib/aarch64-linux-gnu/
 
 # Default payara ports to expose
 EXPOSE 8080 8443 6900
